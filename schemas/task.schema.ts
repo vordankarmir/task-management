@@ -27,6 +27,7 @@ export class Task {
 
   @Prop({
     required: true,
+    index: true,
   })
   status: TASK_STATUS;
 
@@ -42,11 +43,13 @@ export class Task {
 
   @Prop({
     required: true,
+    index: true,
   })
   assignedMember: string;
 
   @Prop({
     required: false,
+    index: true,
   })
   completedDate: number;
 }

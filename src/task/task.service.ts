@@ -65,6 +65,15 @@ export class TaskService {
   ): Promise<Report> {
     const completedTasksData = await this.taskModel.aggregate([
       {
+        $match: {
+          $or: [
+            { assignedMember: memberId },
+            { completedDate: { $gt: startDate, $lt: endDate } },
+            { status: 'COMPLETED' },
+          ],
+        },
+      },
+      {
         $facet: {
           memberTasks: [
             {
